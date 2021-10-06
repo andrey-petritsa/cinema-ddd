@@ -1,0 +1,19 @@
+{
+  "name": "andrey-petritsa/cinema",
+  "description": "Пример простой модели кинотеатра",
+  "minimum-stability": "stable",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "acrosspaper",
+      "email": "andrey@petritsa.ru"
+    }
+  ],
+  "require": {
+  },
+  "autoload": {
+    "psr-4": {
+      "App\\": "src/"
+    }
+  }
+}
