@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Collection\BookingTicket;
+namespace App\Collection\Ticket;
 
-class BookedTicketIterator implements \Iterator
+class TicketIterator implements \Iterator
 {
     private int $position = 0;
 
-    public function __construct(private BookedTicketCollection $bookedTicketCollection)
+    public function __construct(private TicketCollection $bookedTicketCollection)
     {
     }
 
