@@ -10,6 +10,7 @@
     }
   ],
   "require": {
+    "ext-intl": "*"
   },
   "autoload": {
     "psr-4": {
