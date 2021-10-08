@@ -2,13 +2,16 @@
 
 namespace App\Domain\Session\TransferObject;
 
-use App\Collection\BookingTicket\BookedTicketCollection;
+use App\Collection\Ticket\TicketCollection;
 use App\Domain\Movie\Entity\Movie;
+use App\Domain\Session\ValueObject\Seats;
+use App\Domain\Session\ValueObject\SessionSchedule;
 
 class SessionDto
 {
     public int $id;
-    public \DateTime $startTime;
+    public SessionSchedule $sessionSchedule;
     public Movie $movie;
-    public int $countOfSeats;
+    public Seats $seats;
+    public TicketCollection $bookedTicketCollection;
 }
