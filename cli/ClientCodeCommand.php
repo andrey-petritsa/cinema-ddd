@@ -15,6 +15,7 @@ $dateFormatter = new IntlDateFormatter('ru_RU', IntlDateFormatter::LONG,
 
 $sessionStartTime = (new DateTime('2021-02-02 '))->setTime(MOVIE_HOUR_START, MOVIE_MINUTE_START);
 $sessionSchedule = new SessionSchedule($sessionStartTime, $dateFormatter);
+
 $seats = new Seats(COUNT_OF_SEATS);
 
 $movie = new Movie(1, new MovieName('Девчата'), new DateInterval("PT1H25M"));
