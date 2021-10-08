@@ -28,13 +28,13 @@ $sessionDto->bookedTicketCollection = new TicketCollection();
 $session = new Session($sessionDto);
 
 $user = new User(new UserName('Паша'), new UserPhone('735735'));
-$bookedTickedCollection = new TicketCollection();
-$bookedTickedCollection->addTicket(new Ticket(1, $user));
-$bookedTickedCollection->addTicket(new Ticket(2, $user));
-$bookedTickedCollection->addTicket(new Ticket(3, $user));
+$ticketCollection = new TicketCollection();
+$ticketCollection->addTicket(new Ticket(1, $user));
+$ticketCollection->addTicket(new Ticket(2, $user));
+$ticketCollection->addTicket(new Ticket(3, $user));
 
-foreach ($bookedTickedCollection->getIterator() as $bookedTicket) {
-    $session->addTicket($bookedTicket);
+foreach ($ticketCollection->getIterator() as $ticket) {
+    $session->addTicket($ticket);
 }
 
 echo 'Свободных мест в кинозале ' . $session->getFreeSeats();
