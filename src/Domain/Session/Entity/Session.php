@@ -2,53 +2,31 @@
 
 namespace App\Domain\Session\Entity;
 
-use App\Collection\BookingTicket\BookedTicketCollection;
-use App\Domain\BookedTicket\Entity\BookedTicket;
+use App\Collection\Ticket\TicketCollection;
 use App\Domain\Movie\Entity\Movie;
 use App\Domain\Session\TransferObject\SessionDto;
-use DateTime;
+use App\Domain\Session\ValueObject\Seats;
+use App\Domain\Session\ValueObject\SessionSchedule;
+use App\Domain\Ticket\Entity\Ticket;
 
 class Session
 {
     private int $id;
     private Movie $movie;
-    private BookedTicketCollection $bookedTickets;
-    private DateTime $startTime;
-    private int $countOfSeats;
+    private TicketCollection $bookedTickets;
+    private SessionSchedule $sessionSchedule;
+    private Seats $seats;
 
-    public function __construct(SessionDto $movieShowDto)
+    public function __construct(SessionDto $sessionDto)
     {
-        $this->id = $movieShowDto->id;
-        $this->movie = $movieShowDto->movie;
-        $this->startTime = $movieShowDto->startTime;
-        $this->bookedTickets = new BookedTicketCollection();
-
-        self::assertThatCountOfSeatsIsCorrect($movieShowDto->countOfSeats);
-        $this->countOfSeats = $movieShowDto->countOfSeats;
+        $this->id = $sessionDto->id;
+        $this->movie = $sessionDto->movie;
+        $this->sessionSchedule = $sessionDto->sessionSchedule;
+        $this->seats = $sessionDto->seats;
+        $this->bookedTickets = $sessionDto->bookedTicketCollection;
     }
 
-    private static function assertThatCountOfSeatsIsCorrect(int $countOfSeats)
-    {
-        if ($countOfSeats <= 0) {
-            throw new \InvalidArgumentException('Количество свободных мест сеанса не может быть меньше или равно 0');
-        }
-    }
-
-    public function isThereFreeSeats(): bool
-    {
-        if (empty($this->getFreeSeats())) {
-            return false;
-        }
-
-        return true;
-    }
-
-    public function getFreeSeats(): int
-    {
-        return $this->countOfSeats - count($this->bookedTickets);
-    }
-
-    public function addTicket(BookedTicket $ticket)
+    public function addTicket(Ticket $ticket)
     {
         if ($this->isThereFreeSeats()) {
             $this->bookedTickets->addBookedTicket($ticket);
@@ -57,8 +35,48 @@ class Session
         }
     }
 
+    public function isThereFreeSeats(): bool
+    {
+        return $this->seats->isThereFreeSeats();
+    }
+
     public function getMovieName(): string
     {
         return $this->movie->getName();
+    }
+
+    public function getSessionScheduleTime(): string
+    {
+        return $this->sessionSchedule->getScheduleTime($this);
+    }
+
+    public function getFreeSeats(): int
+    {
+        return $this->seats->getFreeSeats($this);
+    }
+
+    public function getSessionDate(): string
+    {
+        return $this->sessionSchedule->getScheduleDate();
+    }
+
+    public function getMovieDuration(): string
+    {
+        return $this->sessionSchedule->getDuration($this);
+    }
+
+    public function getMovie(): Movie
+    {
+        return $this->movie;
+    }
+
+    public function getSeats(): Seats
+    {
+        return $this->seats;
+    }
+
+    public function getBookedTickets()
+    {
+        return $this->bookedTickets;
     }
 }
