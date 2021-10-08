@@ -10,11 +10,11 @@ use App\Domain\User\{Entity\User, ValueObject\Name as UserName, ValueObject\Phon
 const COUNT_OF_SEATS = 20;
 const MOVIE_HOUR_START = 13;
 const MOVIE_MINUTE_START = 34;
-$dateFormatter = new IntlDateFormatter('ru_RU', IntlDateFormatter::LONG,
+$dateLocaleFormatter = new IntlDateFormatter('ru_RU', IntlDateFormatter::LONG,
     IntlDateFormatter::NONE, 'Europe/Moscow');
 
 $sessionStartTime = (new DateTime('2021-02-02 '))->setTime(MOVIE_HOUR_START, MOVIE_MINUTE_START);
-$sessionSchedule = new SessionSchedule($sessionStartTime, $dateFormatter);
+$sessionSchedule = new SessionSchedule($sessionStartTime, $dateLocaleFormatter);
 
 $seats = new Seats(COUNT_OF_SEATS);
 
