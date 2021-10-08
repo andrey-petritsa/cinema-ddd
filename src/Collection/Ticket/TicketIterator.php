@@ -12,7 +12,7 @@ class TicketIterator implements \Iterator
 
     public function current()
     {
-        return $this->bookedTicketCollection->getBookedTickets()[$this->position];
+        return $this->bookedTicketCollection->getTickets()[$this->position];
     }
 
     public function next()
@@ -27,7 +27,7 @@ class TicketIterator implements \Iterator
 
     public function valid()
     {
-        return isset($this->bookedTicketCollection->getBookedTickets()[$this->position]);
+        return isset($this->bookedTicketCollection->getTickets()[$this->position]);
     }
 
     public function rewind()

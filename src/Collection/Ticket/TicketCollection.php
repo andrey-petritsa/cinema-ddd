@@ -13,14 +13,14 @@ class TicketCollection implements \IteratorAggregate, \Countable
         return new TicketIterator($this);
     }
 
-    public function getBookedTickets(): array
+    public function getTickets(): array
     {
         return $this->tickets;
     }
 
-    public function addBookedTicket(Ticket $bookedTicket)
+    public function addTicket(Ticket $ticket)
     {
-        $this->tickets[] = $bookedTicket;
+        $this->tickets[] = $ticket;
     }
 
     public function count()

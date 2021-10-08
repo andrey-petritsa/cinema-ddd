@@ -29,7 +29,7 @@ class Session
     public function addTicket(Ticket $ticket)
     {
         if ($this->isThereFreeSeats()) {
-            $this->bookedTickets->addBookedTicket($ticket);
+            $this->bookedTickets->addTicket($ticket);
         } else {
             throw new \LogicException('Невозможно добавить билет. Сеанс заполнен');
         }
