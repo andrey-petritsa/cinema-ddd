@@ -39,7 +39,7 @@ class Session
 
     public function assertThatSessionIsNotFull()
     {
-        if (empty($this->getFreeSeats())) {
+        if (empty($this->getNumberOfFreeSeats())) {
             throw new \LogicException('Невозможно добавить билет. Сеанс заполнен');
         }
     }
@@ -49,7 +49,7 @@ class Session
         return $this->movie->getName();
     }
 
-    public function getFreeSeats(): int
+    public function getNumberOfFreeSeats(): int
     {
         return $this->numberOfSeats - count($this->bookedTickets);
     }

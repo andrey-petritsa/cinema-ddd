@@ -25,7 +25,7 @@ $session = new Session(Uuid::uuid4(), $movie, NUMBER_OF_SEATS, $sessionStartAt);
 $session->bookTicket(new TicketInformation(CLIENT_NAME, CLIENT_PHONE));
 $session->bookTicket(new TicketInformation(CLIENT_NAME, CLIENT_PHONE));
 
-echo 'Свободных мест в кинозале ' . $session->getFreeSeats();
+echo 'Свободных мест в кинозале ' . $session->getNumberOfFreeSeats();
 echo PHP_EOL;
 echo 'Название фильма ' . $session->getMovieName();
 echo PHP_EOL;
