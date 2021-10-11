@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Collection\Ticket;
+namespace App\Domain\Booking\Ticket\Collection;
 
-use App\Domain\Ticket\Entity\Ticket;
+use App\Domain\Booking\Ticket\Entity\Ticket;
 
 class TicketCollection implements \IteratorAggregate, \Countable
 {
@@ -23,7 +23,7 @@ class TicketCollection implements \IteratorAggregate, \Countable
         $this->tickets[] = $ticket;
     }
 
-    public function count()
+    public function count(): int
     {
         return count($this->tickets);
     }

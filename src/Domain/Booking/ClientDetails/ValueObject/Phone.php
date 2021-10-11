@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Domain\User\ValueObject;
+namespace App\Domain\Booking\ClientDetails\ValueObject;
 
 class Phone
 {
@@ -8,11 +8,11 @@ class Phone
 
     public function __construct(string $phone)
     {
-        self::assertThatPhoneNumberIsCorrect($phone);
+        self::assertThatPhoneNumberIsNumeric($phone);
         $this->phone = $phone;
     }
 
-    private static function assertThatPhoneNumberIsCorrect(string $phone)
+    private static function assertThatPhoneNumberIsNumeric(string $phone)
     {
         if (!is_numeric($phone)) {
             throw new \InvalidArgumentException('Номер телефона указан не верно');

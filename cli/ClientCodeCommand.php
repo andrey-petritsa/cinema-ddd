@@ -1,49 +1,36 @@
 <?php
+
 require_once '../vendor/autoload.php';
 
-use App\Collection\Ticket\TicketCollection;
-use App\Domain\Movie\{Entity\Movie, ValueObject\Name as MovieName};
-use App\Domain\Session\{Entity\Session, TransferObject\SessionDto, ValueObject\Seats, ValueObject\SessionSchedule};
-use App\Domain\Ticket\Entity\Ticket;
-use App\Domain\User\{Entity\User, ValueObject\Name as UserName, ValueObject\Phone as UserPhone};
+use App\Domain\Booking\Movie\Entity\Movie;
+use App\Domain\Booking\Session\Entity\Session;
+use App\Domain\Booking\Ticket\TransferObject\TicketInformation;
+use Ramsey\Uuid\Nonstandard\Uuid;
 
-const COUNT_OF_SEATS = 20;
+const CLIENT_NAME = 'Паша';
+const CLIENT_PHONE = '735736';
+const NUMBER_OF_SEATS = 20;
+
+const MOVIE_NAME = 'Девчата';
 const MOVIE_HOUR_START = 13;
 const MOVIE_MINUTE_START = 34;
+
 $dateLocaleFormatter = new IntlDateFormatter('ru_RU', IntlDateFormatter::LONG,
     IntlDateFormatter::NONE, 'Europe/Moscow');
 
-$sessionStartTime = (new DateTime('2021-02-02 '))->setTime(MOVIE_HOUR_START, MOVIE_MINUTE_START);
-$sessionSchedule = new SessionSchedule($sessionStartTime, $dateLocaleFormatter);
+$sessionStartAt = (new DateTime('2021-02-02'))->setTime(MOVIE_HOUR_START, MOVIE_MINUTE_START);
+$movie = new Movie(Uuid::uuid4(), MOVIE_NAME, new DateInterval("PT1H25M"));
+$session = new Session(Uuid::uuid4(), $movie, NUMBER_OF_SEATS, $sessionStartAt);
 
-$seats = new Seats(COUNT_OF_SEATS);
-
-$movie = new Movie(1, new MovieName('Девчата'), new DateInterval("PT1H25M"));
-
-$sessionDto = new SessionDto();
-$sessionDto->id = 1;
-$sessionDto->movie = $movie;
-$sessionDto->sessionSchedule = $sessionSchedule;
-$sessionDto->seats = $seats;
-$sessionDto->bookedTicketCollection = new TicketCollection();
-$session = new Session($sessionDto);
-
-$user = new User(new UserName('Паша'), new UserPhone('735735'));
-$ticketCollection = new TicketCollection();
-$ticketCollection->addTicket(new Ticket(1, $user));
-$ticketCollection->addTicket(new Ticket(2, $user));
-$ticketCollection->addTicket(new Ticket(3, $user));
-
-foreach ($ticketCollection->getIterator() as $ticket) {
-    $session->addTicket($ticket);
-}
+$session->bookTicket(new TicketInformation(CLIENT_NAME, CLIENT_PHONE));
+$session->bookTicket(new TicketInformation(CLIENT_NAME, CLIENT_PHONE));
 
 echo 'Свободных мест в кинозале ' . $session->getFreeSeats();
 echo PHP_EOL;
 echo 'Название фильма ' . $session->getMovieName();
 echo PHP_EOL;
-echo 'Расписание сеанса ' . $session->getSessionScheduleTime();
+echo 'Начало сеанса ' . $session->getStartAt()->format('m-d-y H:i');
 echo PHP_EOL;
-echo 'Дата ' . $session->getSessionDate();
+echo 'Окончание сеанса ' . $session->getEndAt()->format('m-d-y H:i');
 echo PHP_EOL;
-echo 'Продолжительность ' . $session->getMovieDuration();
+echo 'Продолжительность ' . $session->getMovieDuration()->format("%h час %i минут");

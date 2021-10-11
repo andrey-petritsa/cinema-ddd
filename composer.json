@@ -10,7 +10,8 @@
     }
   ],
   "require": {
-    "ext-intl": "*"
+    "ext-intl": "*",
+    "ramsey/uuid": "^4.2"
   },
   "autoload": {
     "psr-4": {

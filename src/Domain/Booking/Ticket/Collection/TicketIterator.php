@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Collection\Ticket;
+namespace App\Domain\Booking\Ticket\Collection;
 
 class TicketIterator implements \Iterator
 {
@@ -20,12 +20,12 @@ class TicketIterator implements \Iterator
         $this->position++;
     }
 
-    public function key()
+    public function key(): int
     {
         return $this->position;
     }
 
-    public function valid()
+    public function valid(): bool
     {
         return isset($this->bookedTicketCollection->getTickets()[$this->position]);
     }
