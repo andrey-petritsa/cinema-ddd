@@ -18,6 +18,7 @@ class Session
     public function __construct(private UuidInterface $id, private Movie $movie, private int $numberOfSeats, private \DateTime $startAt)
     {
         self::assertThatAmountOfSeatsCorrect($numberOfSeats);
+
         $this->bookedTickets = new TicketCollection();
     }
 

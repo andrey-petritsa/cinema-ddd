@@ -11,6 +11,7 @@ class Movie
     public function __construct(private UuidInterface $id, string $name, private \DateInterval $duration)
     {
         self::assertThatNameNotEmpty($name);
+
         $this->name = $name;
     }
 
