@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Domain\Booking\Ticket\Collection;
+namespace App\Domain\Booking\Collection;
 
-use App\Domain\Booking\Ticket\Entity\Ticket;
+use App\Domain\Booking\Entity\Session\Ticket;
 
 class TicketCollection implements \IteratorAggregate, \Countable
 {

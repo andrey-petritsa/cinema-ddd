@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Domain\Booking\Ticket\Entity;
+namespace App\Domain\Booking\Entity\Session;
 
-use App\Domain\Booking\ClientDetails\ValueObject\ClientDetails;
+use App\Domain\Booking\ValueObject\ClientDetails;
 use Ramsey\Uuid\UuidInterface;
 
 class Ticket

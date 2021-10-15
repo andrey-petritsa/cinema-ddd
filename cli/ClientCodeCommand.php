@@ -2,9 +2,9 @@
 
 require_once '../vendor/autoload.php';
 
-use App\Domain\Booking\Movie\Entity\Movie;
-use App\Domain\Booking\Session\Entity\Session;
-use App\Domain\Booking\Ticket\TransferObject\TicketInformation;
+use App\Domain\Booking\Entity\Movie;
+use App\Domain\Booking\Entity\Session\Session;
+use App\Domain\Booking\TransferObject\TicketInformation;
 use Ramsey\Uuid\Nonstandard\Uuid;
 
 const CLIENT_NAME = 'Паша';

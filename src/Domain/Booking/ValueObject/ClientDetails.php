@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Domain\Booking\ClientDetails\ValueObject;
+namespace App\Domain\Booking\ValueObject;
 
 class ClientDetails
 {

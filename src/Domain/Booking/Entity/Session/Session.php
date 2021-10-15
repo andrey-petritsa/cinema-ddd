@@ -1,13 +1,12 @@
 <?php
 
-namespace App\Domain\Booking\Session\Entity;
+namespace App\Domain\Booking\Entity\Session;
 
-use App\Domain\Booking\ClientDetails\ValueObject\ClientDetails;
-use App\Domain\Booking\ClientDetails\ValueObject\Phone;
-use App\Domain\Booking\Movie\Entity\Movie;
-use App\Domain\Booking\Ticket\Collection\TicketCollection;
-use App\Domain\Booking\Ticket\Entity\Ticket;
-use App\Domain\Booking\Ticket\TransferObject\TicketInformation;
+use App\Domain\Booking\Collection\TicketCollection;
+use App\Domain\Booking\Entity\Movie;
+use App\Domain\Booking\TransferObject\TicketInformation;
+use App\Domain\Booking\ValueObject\ClientDetails;
+use App\Domain\Booking\ValueObject\Phone;
 use Ramsey\Uuid\Nonstandard\Uuid;
 use Ramsey\Uuid\UuidInterface;
 

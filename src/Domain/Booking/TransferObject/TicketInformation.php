@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Domain\Booking\Ticket\TransferObject;
+namespace App\Domain\Booking\TransferObject;
 
 class TicketInformation
 {

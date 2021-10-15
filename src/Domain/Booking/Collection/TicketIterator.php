@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Domain\Booking\Ticket\Collection;
+namespace App\Domain\Booking\Collection;
 
 class TicketIterator implements \Iterator
 {

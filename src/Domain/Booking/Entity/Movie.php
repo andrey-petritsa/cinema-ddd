@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Domain\Booking\Movie\Entity;
+namespace App\Domain\Booking\Entity;
 
 use Ramsey\Uuid\UuidInterface;
 
